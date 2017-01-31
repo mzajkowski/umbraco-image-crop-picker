@@ -1,0 +1,8 @@
+﻿<div ng-controller="Our.Umbraco.ImageCropPicker.CropPickerController as vm">
+    <!-- DEBUG: Uncomment below line to preview model data -->
+    <!--<pre>{{vm.data.cropsData | json}}</pre>-->
+    <!-- /DEBUG -->
+    <select id="cropPickerSelect"
+            ng-options="crop.alias as (crop.alias + ' [' + crop.width + 'px × ' + crop.height + 'px]') for crop in vm.data.cropsData track by crop.alias"
+            ng-model="model.value"></select>
+</div>

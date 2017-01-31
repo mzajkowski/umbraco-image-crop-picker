@@ -1,0 +1,8 @@
+﻿<div ng-controller="Our.Umbraco.ImageCropPicker.DataTypePickerController as vm">
+    <!-- DEBUG: Uncomment below line to preview model data -->
+    <!--<pre>{{vm.data.dataTypes | json}}</pre>-->
+    <!-- /DEBUG -->
+    <select id="dataTypeSelect"
+            ng-options="dataType.Name for dataType in vm.data.dataTypes track by dataType.Id"
+            ng-model="model.value"></select>
+</div>
