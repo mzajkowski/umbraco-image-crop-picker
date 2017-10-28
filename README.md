@@ -1,5 +1,8 @@
 # Umbraco Image Crop Picker #
 
+[![Build status](https://ci.appveyor.com/api/projects/status/ladurl50o0c40r7c/branch/master?svg=true)](https://ci.appveyor.com/project/mzajkowski/umbraco-image-crop-picker/branch/master)
+
+
 **Custom proprty editor for selecting single (currently) image crop data record from customizable Image Cropper DataType.**
 
 ## Example usage ##
