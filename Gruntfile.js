@@ -7,6 +7,7 @@ module.exports = function (grunt) {
   var tmpDir = 'tmp/';
   var releaseDir = 'release/';
   var projectDir = sourceDir + pkg.name + '/';
+  var project = projectDir + pkg.name + '.csproj';
   var releaseFilesDir = releaseDir + 'files/';
   var tmpDirRelease = tmpDir + releaseFilesDir;
 
@@ -17,10 +18,11 @@ module.exports = function (grunt) {
   var version = assembly.informationalVersion ? assembly.informationalVersion : assembly.version;
 
   var nuspecFileName = pkg.name + '.nuspec';
+  var nuspecTemplateFileName = nuspecFileName + '.template';
 
   var buildedNuget = {};
 
-  buildedNuget[`${tmpDir}${sourceDir}${pkg.name}/${nuspecFileName}`] = [projectDir + nuspecFileName]
+  buildedNuget[`${projectDir}${nuspecFileName}`] = [projectDir + nuspecTemplateFileName]
 
   grunt.template.addDelimiters('handlebars-like-delimiters', '{{', '}}');
   grunt.initConfig({
@@ -46,14 +48,6 @@ module.exports = function (grunt) {
           },
         ],
       },
-      nuget: {
-          files: [
-              {
-                  src: [ sourceDir + '**/*.*'],
-                  dest: tmpDir
-              }
-          ]
-      }
     },
     template: {
       nuspec: {
@@ -110,7 +104,7 @@ module.exports = function (grunt) {
     },
     nugetpack: {
       dist: {
-        src: tmpDir + sourceDir + pkg.name + '/' + pkg.name + '.csproj',
+        src: project,
         dest: releaseDir + 'nuget/',
         options: {
           properties: 'Platform=AnyCPU;Configuration=Release',
