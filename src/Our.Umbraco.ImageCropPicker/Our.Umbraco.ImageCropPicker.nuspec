@@ -6,12 +6,12 @@
     <title>{{-title}}</title>
     <authors>{{-author}}</authors>
     <owners>{{-author}}</owners>
-    <licenseUrl>https://github.com/mzajkowski/umbraco-image-crop-picker/blob/master/LICENSE.md</licenseUrl>
-    <projectUrl>https://github.com/mzajkowski/umbraco-image-crop-picker</projectUrl>
+    <licenseUrl>{{-licenseUrl}}</licenseUrl>
+    <projectUrl>{{-projectUrl}}</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>{{-description}}</description>
     <copyright>{{-copyright}}</copyright>
-    <tags>Umbraco</tags>
+    <tags>{{-tags}}</tags>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="7.5.8" />
     </dependencies>

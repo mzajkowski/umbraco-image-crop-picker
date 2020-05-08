@@ -66,6 +66,10 @@ module.exports = function (grunt) {
             description: pkg.readme,
             author: pkg.author.name,
             copyright: assembly.copyright,
+            licenseUrl: pkg.license.url,
+            requireLicenseAcceptance: pkg.license.requireLicenseAcceptance,
+            tags: pkg.tags,
+            projectUrl: pkg.author.url,
             files: [
               {
                 path: tmpDir,

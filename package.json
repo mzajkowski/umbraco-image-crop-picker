@@ -4,8 +4,10 @@
   "url": "https://github.com/mzajkowski/umbraco-image-crop-picker",
   "license": {
     "name": "MIT",
-    "url": "https://github.com/mzajkowski/umbraco-image-crop-picker/blob/master/LICENSE.md"
+    "url": "https://github.com/mzajkowski/umbraco-image-crop-picker/blob/master/LICENSE.md",
+    "requireLicenseAcceptance": false
   },
+  "tags": "Umbraco",
   "author": {
     "name": "Marcin Zajkowski",
     "url": "https://github.com/mzajkowski/umbraco-image-crop-picker"
