@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "name": "Our.Umbraco.ImageCropPicker",
+  "url": "https://github.com/mzajkowski/umbraco-image-crop-picker",
+  "license": {
+    "name": "MIT",
+    "url": "https://github.com/mzajkowski/umbraco-image-crop-picker/blob/master/LICENSE.md",
+    "requireLicenseAcceptance": false
+  },
+  "tags": "Umbraco",
+  "author": {
+    "name": "Marcin Zajkowski",
+    "url": "https://github.com/mzajkowski/umbraco-image-crop-picker"
+  },
+  "scripts": {
+    "build": "grunt"
+  },
+  "readme": "Custom property editor for selecting single (currently) image crop data record from customizable Image Cropper DataType.",
+  "devDependencies": {
+    "grunt": "~1.1.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-nuget": "~0.3.1",
+    "grunt-template": "^1.0.0",
+    "grunt-umbraco-package": "1.0.0",
+    "grunt-zip": "~0.18.2"
+  }
+}

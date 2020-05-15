@@ -1,0 +1,10 @@
+﻿{
+    "title": "Our.Umbraco.ImageCropPicker",
+    "description": "Custom property editor for selecting single (currently) image crop data record from customizable Image Cropper DataType.",
+    "company": "Marcin Zajkowski",
+    "product": "Our.Umbraco.ImageCropPicker",
+    "copyright": "Copyright ©  2017",
+    "version": "1.0.0.0",
+    "informationalVersion": null,
+    "fileVersion": "1.0.0.0"
+  }
