@@ -1,6 +1,6 @@
 # Umbraco Image Crop Picker #
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ladurl50o0c40r7c/branch/master?svg=true)](https://ci.appveyor.com/project/mzajkowski/umbraco-image-crop-picker/branch/master)
+[![Build status](https://ci.appveyor.com/api/projects/status/ladurl50o0c40r7c/branch/master?svg=true)](https://ci.appveyor.com/project/mzajkowski/umbraco-image-crop-picker/branch/master) [![NuGet Version](https://img.shields.io/nuget/v/Our.Umbraco.ImageCropPicker)](https://www.nuget.org/packages/Our.Umbraco.ImageCropPicker/)
 
 
 **Custom proprty editor for selecting single (currently) image crop data record from customizable Image Cropper DataType.**
@@ -32,4 +32,10 @@ Using included property value converter it's possible to retrieve property value
 
 ## Installation ##
 
-**ToDo:** _NuGet package + Our Umbraco package._
+### NuGet package repository
+
+To [install from NuGet](https://www.nuget.org/packages/Our.Umbraco.ImageCropPicker), you can run the following command from within Visual Studio:
+
+```
+PM> Install-Package Our.Umbraco.ImageCropPicker
+```
