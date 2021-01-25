@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
-using Newtonsoft.Json;
+using Umbraco.Core;
 using Umbraco.Core.Models;
+using Umbraco.Core.PropertyEditors;
 using Umbraco.Core.Services;
-using Umbraco.Web.Models;
-using Umbraco.Web.Mvc;
 using Umbraco.Web.Editors;
+using Umbraco.Web.Mvc;
 
 namespace Our.Umbraco.ImageCropPicker.Web.Controllers
 {
@@ -13,30 +14,24 @@ namespace Our.Umbraco.ImageCropPicker.Web.Controllers
     public class ImageCropPickerApiController : UmbracoAuthorizedJsonController
     {
         private readonly IDataTypeService _dataTypeService;
-        private const string CropsAlias = "crops";
 
-        public ImageCropPickerApiController()
-        {
-            _dataTypeService = Services.DataTypeService;
-        }
+        public ImageCropPickerApiController(IDataTypeService dataTypeService)
+            => _dataTypeService = dataTypeService;
 
-        public IEnumerable<object> GetDataTypes()
-        {
-            return _dataTypeService.GetAllDataTypeDefinitions();
-        }
+        public IEnumerable<IDataType> GetDataTypes()
+            => _dataTypeService.GetAll()
+                .Where(dataType => dataType.EditorAlias.InvariantEquals(Constants.PropertyEditors.Aliases.ImageCropper))
+                .ToArray();
 
         [HttpGet]
-        public IEnumerable<object> GetImageCropsDataForDataType(int id)
+        public IEnumerable<ImageCropperConfiguration.Crop> GetImageCropsDataForDataType(int id)
         {
-            var imageCropperPreValuesCollection =
-                _dataTypeService.GetPreValuesCollectionByDataTypeId(id);
+            var dataType = _dataTypeService.GetDataType(id);
 
-            PreValue crops;
-            if (!imageCropperPreValuesCollection.PreValuesAsDictionary.TryGetValue(CropsAlias, out crops))
-                return null;
-
-            var cropsDataList = JsonConvert.DeserializeObject<List<ImageCropData>>(crops.Value);
-            return cropsDataList;
+            return dataType?.Configuration == null
+                ? Enumerable.Empty<ImageCropperConfiguration.Crop>()
+                : (dataType.Configuration as ImageCropperConfiguration).Crops
+                    ?? Enumerable.Empty<ImageCropperConfiguration.Crop>();
         }
     }
 }
