@@ -10,20 +10,12 @@ namespace Our.Umbraco.ImageCropPicker.Converters
 {
     public class ImageCropPickerValueConverter : PropertyValueConverterBase
     {
-        private readonly IEnumerable<ImageCropperConfiguration.Crop> _crops;
+        private const string EditorAlias = "Our.Umbraco.ImageCropPicker";
+        private static readonly Type ImageCropperValue = typeof(ImageCropperConfiguration.Crop);
+        private readonly IDataTypeService _dataTypeService;
 
         public ImageCropPickerValueConverter(IDataTypeService dataTypeService)
-            => _crops = dataTypeService
-                .GetByEditorAlias(Constants.PropertyEditors.Aliases.ImageCropper)
-                .Select(x => x.Configuration as ImageCropperConfiguration)
-                .Where(x => x != null)
-                .SelectMany(x => x.Crops)
-                .ToArray();
-
-        private const string EditorAlias = "Our.Umbraco.ImageCropPicker";
-
-        private static readonly Type ImageCropperValue = typeof(ImageCropperConfiguration.Crop);
-
+            => _dataTypeService = dataTypeService;
         public override bool IsConverter(PublishedPropertyType propertyType)
             => propertyType.EditorAlias.InvariantEquals(EditorAlias);
 
@@ -39,6 +31,11 @@ namespace Our.Umbraco.ImageCropPicker.Converters
 
         public override object ConvertSourceToIntermediate(IPublishedElement owner, PublishedPropertyType propertyType,
             object source, bool preview)
-            => _crops.FirstOrDefault(x => x.Alias.Equals(source.ToString()));
+            => _dataTypeService
+                .GetByEditorAlias(Constants.PropertyEditors.Aliases.ImageCropper)
+                .Select(x => x.Configuration as ImageCropperConfiguration)
+                .Where(x => x != null)
+                .SelectMany(x => x.Crops)
+                .FirstOrDefault(x => x.Alias.Equals(source.ToString()));
     }
 }
