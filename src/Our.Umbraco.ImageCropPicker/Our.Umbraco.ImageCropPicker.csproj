@@ -232,21 +232,22 @@
   <ItemGroup>
     <Compile Include="Converters\ImageCropPickerValueConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ImageCropPickerApiController.cs" />
+    <Compile Include="Web\Controllers\ImageCropPickerApiController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Our.Umbraco.ImageCropPicker.nuspec.template" />
+    <None Include="Our.Umbraco.ImageCropPicker" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.json" />
-    <None Include="App_Plugins\ImageCropPicker\package.manifest" />
+    <None Include="Web\UI\App_Plugins\ImageCropPicker\package.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Plugins\ImageCropPicker\Js\CropPicker.controller.js" />
-    <Content Include="App_Plugins\ImageCropPicker\Js\DataTypePicker.controller.js" />
-    <Content Include="App_Plugins\ImageCropPicker\Js\ImageCropPicker.resource.js" />
-    <Content Include="App_Plugins\ImageCropPicker\Views\CropPicker.html" />
-    <Content Include="App_Plugins\ImageCropPicker\Views\DataTypePicker.html" />
+    <Content Include="Web\UI\App_Plugins\ImageCropPicker\Js\CropPicker.controller.js" />
+    <Content Include="Web\UI\App_Plugins\ImageCropPicker\Js\DataTypePicker.controller.js" />
+    <Content Include="Web\UI\App_Plugins\ImageCropPicker\Js\ImageCropPicker.resource.js" />
+    <Content Include="Web\UI\App_Plugins\ImageCropPicker\Views\CropPicker.html" />
+    <Content Include="Web\UI\App_Plugins\ImageCropPicker\Views\DataTypePicker.html" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

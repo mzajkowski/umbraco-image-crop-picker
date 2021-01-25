@@ -14,9 +14,11 @@
     <tags>{{-tags}}</tags>
     <dependencies>
       <dependency id="UmbracoCms.Core" version="8.0" />
+      <dependency id="UmbracoCms.Web" version="8.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="App_Plugins\*.*" target="content" />
+    <file src="Web\UI\**\*.*" target="content" />
+    <file src="bin\Release\Our.Umbraco.ImageCropPicker.dll" target="lib\net472" />
   </files>
 </package>
