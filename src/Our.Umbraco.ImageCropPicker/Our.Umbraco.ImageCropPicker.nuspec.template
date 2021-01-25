@@ -13,10 +13,10 @@
     <copyright>{{-copyright}}</copyright>
     <tags>{{-tags}}</tags>
     <dependencies>
-      <dependency id="UmbracoCms.Core" version="7.5.8" />
+      <dependency id="UmbracoCms.Core" version="8.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="Web\UI\App_Plugins\*.*" target="content" />
+    <file src="App_Plugins\*.*" target="content" />
   </files>
 </package>
