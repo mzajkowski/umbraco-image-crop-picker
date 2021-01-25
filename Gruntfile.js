@@ -120,7 +120,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-zip');
   grunt.loadNpmTasks('grunt-template');
 
-    grunt.registerTask('dev', ['copy', 'template', 'zip', 'umbracoPackage', 'nugetpack']);
+    grunt.registerTask('dev', [ 'clean', 'copy', 'template', 'zip', 'umbracoPackage', 'nugetpack']);
 
   grunt.registerTask('default', ['dev']);
 };
