@@ -16,6 +16,7 @@ namespace Our.Umbraco.ImageCropPicker.Converters
 
         public ImageCropPickerValueConverter(IDataTypeService dataTypeService)
             => _dataTypeService = dataTypeService;
+
         public override bool IsConverter(PublishedPropertyType propertyType)
             => propertyType.EditorAlias.InvariantEquals(EditorAlias);
 
