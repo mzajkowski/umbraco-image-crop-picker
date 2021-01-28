@@ -1,24 +1,24 @@
 ﻿{
-	propertyEditors: [
+		"propertyEditors": [
 		{
-			alias: "Our.Umbraco.ImageCropPicker",
-			name: "Image Crop Picker",
-			icon: "icon-window-sizes",
-			group: "Image Cropper Extensions",
-			editor: {
-				view: "~/App_Plugins/ImageCropPicker/Views/CropPicker.html",
-				valueType: "JSON"
+			"alias": "Our.Umbraco.ImageCropPicker",
+			"name": "Image Crop Picker",
+			"icon": "icon-window-sizes",
+			"group": "Image Cropper Extensions",
+			"editor": {
+				"view": "~/App_Plugins/ImageCropPicker/Views/CropPicker.html",
+				"valueType": "JSON"
 			},
-			prevalues: {
-				fields: [
+			"prevalues": {
+				"fields": [
 					{
-						label: "Data Type",
-						description: "Select the data type of Image Cropper for which you want retrieve crops data",
-						key: "dataType",
-						view: "~/App_Plugins/ImageCropPicker/Views/DataTypePicker.html",
-						validation: [
+						"label": "Data Type",
+						"description": "Select the data type of Image Cropper for which you want retrieve crops data",
+						"key": "dataType",
+						"view": "~/App_Plugins/ImageCropPicker/Views/DataTypePicker.html",
+						"validation": [
 							{
-								type: "Required"
+								"type": "Required"
 							}
 						]
 					}
@@ -26,7 +26,7 @@
 			}
 		}
 	],
-	javascript: [
+	"javascript": [
 		"~/App_Plugins/ImageCropPicker/Js/ImageCropPicker.resource.js",
 		"~/App_Plugins/ImageCropPicker/Js/DataTypePicker.controller.js",
 		"~/App_Plugins/ImageCropPicker/Js/CropPicker.controller.js"
