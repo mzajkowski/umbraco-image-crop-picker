@@ -237,7 +237,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Our.Umbraco.ImageCropPicker.nuspec.template" />
-    <None Include="Our.Umbraco.ImageCropPicker" />
     <None Include="packages.config" />
     <None Include="Properties\AssemblyInfo.json" />
     <None Include="Web\UI\App_Plugins\ImageCropPicker\package.manifest" />
