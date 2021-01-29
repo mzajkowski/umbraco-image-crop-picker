@@ -17,6 +17,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Web\UI\App_Plugins\*.*" target="content" />
+    <file src="Web\UI\**\*.*" target="content" />
+    <file src="bin\Release\Our.Umbraco.ImageCropPicker.dll" target="lib\net46" />
   </files>
 </package>
