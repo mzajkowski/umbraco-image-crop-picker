@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
+using System;
 using Umbraco.Core;
+using Umbraco.Core.Logging;
 using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Core.PropertyEditors;
-using Umbraco.Core.Services;
 
 namespace Our.Umbraco.ImageCropPicker.Converters
 {
@@ -12,10 +11,10 @@ namespace Our.Umbraco.ImageCropPicker.Converters
     {
         private const string EditorAlias = "Our.Umbraco.ImageCropPicker";
         private static readonly Type ImageCropperValue = typeof(ImageCropperConfiguration.Crop);
-        private readonly IDataTypeService _dataTypeService;
+        private readonly ILogger _logger;
 
-        public ImageCropPickerValueConverter(IDataTypeService dataTypeService)
-            => _dataTypeService = dataTypeService;
+        public ImageCropPickerValueConverter(ILogger logger)
+            => _logger = logger;
 
         public override bool IsConverter(PublishedPropertyType propertyType)
             => propertyType.EditorAlias.InvariantEquals(EditorAlias);
@@ -32,11 +31,20 @@ namespace Our.Umbraco.ImageCropPicker.Converters
 
         public override object ConvertSourceToIntermediate(IPublishedElement owner, PublishedPropertyType propertyType,
             object source, bool preview)
-            => _dataTypeService
-                .GetByEditorAlias(Constants.PropertyEditors.Aliases.ImageCropper)
-                .Select(x => x.Configuration as ImageCropperConfiguration)
-                .Where(x => x != null)
-                .SelectMany(x => x.Crops)
-                .FirstOrDefault(x => x.Alias.Equals(source.ToString()));
+        {
+            try
+            {
+                if (source != null && !source.ToString().IsNullOrWhiteSpace())
+                {
+                    return JsonConvert.DeserializeObject<ImageCropperConfiguration.Crop>(source.ToString());
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.Error<ImageCropPickerValueConverter>("Error converting value", e);
+            }
+
+            return null;
+        }
     }
 }
