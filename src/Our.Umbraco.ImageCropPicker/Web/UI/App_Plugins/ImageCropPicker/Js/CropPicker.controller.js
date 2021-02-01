@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular.module("umbraco")
@@ -13,7 +13,11 @@
         vm.value = '';
 
         vm.init = function () {
-            vm.value = $scope.model.value.alias || '';
+            if ($scope.model.value !== null && $scope.model.value.alias !== null) {
+                vm.value = $scope.model.value.alias;
+            } else {
+                vm.value = '';
+            }
 
             imageCropPickerResource.GetImageCropsDataForDataType($scope.model.config.dataType.Id)
                 .then(function (data) {
