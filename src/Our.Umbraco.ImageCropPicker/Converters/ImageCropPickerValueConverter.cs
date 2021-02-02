@@ -16,20 +16,20 @@ namespace Our.Umbraco.ImageCropPicker.Converters
         public ImageCropPickerValueConverter(ILogger logger)
             => _logger = logger;
 
-        public override bool IsConverter(PublishedPropertyType propertyType)
+        public override bool IsConverter(IPublishedPropertyType propertyType)
             => propertyType.EditorAlias.InvariantEquals(EditorAlias);
 
-        public override PropertyCacheLevel GetPropertyCacheLevel(PublishedPropertyType propertyType)
+        public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType)
             => PropertyCacheLevel.Snapshot;
 
-        public override Type GetPropertyValueType(PublishedPropertyType propertyType)
+        public override Type GetPropertyValueType(IPublishedPropertyType propertyType)
             => ImageCropperValue;
 
-        public override object ConvertIntermediateToObject(IPublishedElement owner, PublishedPropertyType propertyType,
+        public override object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType,
             PropertyCacheLevel referenceCacheLevel, object inter, bool preview)
             => inter as ImageCropperConfiguration.Crop;
 
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, PublishedPropertyType propertyType,
+        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType,
             object source, bool preview)
         {
             try
