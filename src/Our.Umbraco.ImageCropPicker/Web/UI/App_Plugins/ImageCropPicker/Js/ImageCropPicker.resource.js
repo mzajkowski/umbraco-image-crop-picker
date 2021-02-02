@@ -23,10 +23,10 @@
                 "Failed to retrieve data types");
         }
 
-        function getImageCropsDataForDataType(dataTypeName) {
+        function getImageCropsDataForDataType(dataTypeKey) {
             var config = {
                 params: {
-                    dataTypeName: dataTypeName
+                    dataTypeKey: dataTypeKey
                 },
                 headers: { 'Accept': 'application/json' }
             };

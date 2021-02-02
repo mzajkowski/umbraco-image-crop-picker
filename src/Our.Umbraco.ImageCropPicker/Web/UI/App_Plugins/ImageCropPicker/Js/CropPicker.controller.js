@@ -12,19 +12,19 @@
         vm.data = {};
 
         vm.init = function () {
-            var dataTypeName = '';
+            var dataTypeKey = '';
 
             if ($scope.model.config) {
-                if ($scope.model.config.dataType && $scope.model.config.dataType.Name) {
-                    dataTypeName = $scope.model.config.dataType.Name;
+                if ($scope.model.config.dataType && $scope.model.config.dataType.Key) {
+                    dataTypeKey = $scope.model.config.dataType.Key;
                 }
-                else if ($scope.model.config.dataTypeName && $scope.model.config.dataTypeName !== '') {
-                    dataTypeName = $scope.model.config.dataTypeName;
+                else if ($scope.model.config.dataTypeKey) {
+                    dataTypeKey = $scope.model.config.dataTypeKey;
                 }
             }
 
-            if (dataTypeName) {
-                imageCropPickerResource.GetImageCropsDataForDataType(dataTypeName)
+            if (dataTypeKey) {
+                imageCropPickerResource.GetImageCropsDataForDataType(dataTypeKey)
                     .then(function (data) {
                         vm.data.cropsData = data;
                     });
