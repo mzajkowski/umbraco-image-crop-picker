@@ -10,19 +10,25 @@
         var vm = this;
 
         vm.data = {};
-        vm.value = '';
 
         vm.init = function () {
-            if ($scope.model.value !== null && $scope.model.value.alias !== null) {
-                vm.value = $scope.model.value.alias;
-            } else {
-                vm.value = '';
+            var dataTypeId = '';
+
+            if ($scope.model.config !== undefined) {
+                if ($scope.model.config.dataType !== undefined && ($scope.model.config.dataType.Id !== undefined || $scope.model.config.dataType.Id !== '')) {
+                    dataTypeId = $scope.model.config.dataType.Id;
+                }
+                else if ($scope.model.config.dataTypeId !== undefined && $scope.model.config.dataTypeId !== '') {
+                    dataTypeId = $scope.model.config.dataTypeId;
+                }
             }
 
-            imageCropPickerResource.GetImageCropsDataForDataType($scope.model.config.dataType.Id)
-                .then(function (data) {
-                    vm.data.cropsData = data;
-                });
+            if ((dataTypeId !== undefined || dataTypeId !== null) && dataTypeId !== '') {
+                imageCropPickerResource.GetImageCropsDataForDataType(dataTypeId)
+                    .then(function (data) {
+                        vm.data.cropsData = data;
+                    });
+            }
         };
 
         vm.init();

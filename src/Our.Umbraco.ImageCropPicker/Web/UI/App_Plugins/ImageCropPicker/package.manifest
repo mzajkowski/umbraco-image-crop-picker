@@ -5,6 +5,7 @@
       "name": "Image Crop Picker",
       "icon": "icon-window-sizes",
       "group": "Image Cropper Extensions",
+      "isParameterEditor": false,
       "editor": {
         "view": "~/App_Plugins/ImageCropPicker/Views/CropPicker.html",
         "valueType": "JSON"
@@ -23,6 +24,9 @@
             ]
           }
         ]
+      },
+      "defaultConfig": {
+        "dataTypeId": ""
       }
     }
   ],
