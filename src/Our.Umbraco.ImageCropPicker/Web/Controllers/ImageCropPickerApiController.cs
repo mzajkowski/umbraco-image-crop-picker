@@ -24,9 +24,14 @@ namespace Our.Umbraco.ImageCropPicker.Web.Controllers
                 .ToArray();
 
         [HttpGet]
-        public IEnumerable<ImageCropperConfiguration.Crop> GetImageCropsDataForDataType(int id)
+        public IEnumerable<ImageCropperConfiguration.Crop> GetImageCropsDataForDataType(string dataTypeName)
         {
-            var dataType = _dataTypeService.GetDataType(id);
+            if (string.IsNullOrWhiteSpace(dataTypeName))
+            {
+                return Enumerable.Empty<ImageCropperConfiguration.Crop>();
+            }
+
+            var dataType = _dataTypeService.GetDataType(dataTypeName);
 
             return dataType?.Configuration == null
                 ? Enumerable.Empty<ImageCropperConfiguration.Crop>()
