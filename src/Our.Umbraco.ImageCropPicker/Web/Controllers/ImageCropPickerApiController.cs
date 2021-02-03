@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
-using Newtonsoft.Json;
+using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Core.Services;
+using Umbraco.Web.Editors;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
-using Umbraco.Web.Editors;
 
 namespace Our.Umbraco.ImageCropPicker.Web.Controllers
 {
@@ -20,22 +23,40 @@ namespace Our.Umbraco.ImageCropPicker.Web.Controllers
             _dataTypeService = Services.DataTypeService;
         }
 
-        public IEnumerable<object> GetDataTypes()
+        public IEnumerable<IDataTypeDefinition> GetDataTypes()
         {
-            return _dataTypeService.GetAllDataTypeDefinitions();
+            return _dataTypeService.GetAllDataTypeDefinitions()
+                .Where(dataType => dataType.PropertyEditorAlias
+                    .InvariantEquals(Constants.PropertyEditors.ImageCropperAlias))
+                .ToArray();
         }
 
         [HttpGet]
-        public IEnumerable<object> GetImageCropsDataForDataType(int id)
+        public IEnumerable<ImageCropData> GetImageCropsDataForDataType(Guid dataTypeKey)
         {
-            var imageCropperPreValuesCollection =
-                _dataTypeService.GetPreValuesCollectionByDataTypeId(id);
+            if (dataTypeKey == default(Guid))
+            {
+                return Enumerable.Empty<ImageCropData>();
+            }
 
-            PreValue crops;
-            if (!imageCropperPreValuesCollection.PreValuesAsDictionary.TryGetValue(CropsAlias, out crops))
-                return null;
+            var dataTypeDefinition = _dataTypeService
+                .GetDataTypeDefinitionByPropertyEditorAlias(Constants.PropertyEditors.ImageCropperAlias)
+                .FirstOrDefault(dataType => dataType.Key.Equals(dataTypeKey));
+
+            if (dataTypeDefinition == null)
+            {
+                return Enumerable.Empty<ImageCropData>();
+            }
+
+            var imageCropperPreValuesCollection = _dataTypeService.GetPreValuesCollectionByDataTypeId(dataTypeDefinition.Id);
+
+            if (!imageCropperPreValuesCollection.PreValuesAsDictionary.TryGetValue(CropsAlias, out var crops))
+            {
+                return Enumerable.Empty<ImageCropData>();
+            }
 
             var cropsDataList = JsonConvert.DeserializeObject<List<ImageCropData>>(crops.Value);
+
             return cropsDataList;
         }
     }
