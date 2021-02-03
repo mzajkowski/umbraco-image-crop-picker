@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using Umbraco.Core;
@@ -24,9 +25,14 @@ namespace Our.Umbraco.ImageCropPicker.Web.Controllers
                 .ToArray();
 
         [HttpGet]
-        public IEnumerable<ImageCropperConfiguration.Crop> GetImageCropsDataForDataType(int id)
+        public IEnumerable<ImageCropperConfiguration.Crop> GetImageCropsDataForDataType(Guid dataTypeKey)
         {
-            var dataType = _dataTypeService.GetDataType(id);
+            if (dataTypeKey == default(Guid))
+            {
+                return Enumerable.Empty<ImageCropperConfiguration.Crop>();
+            }
+
+            var dataType = _dataTypeService.GetDataType(dataTypeKey);
 
             return dataType?.Configuration == null
                 ? Enumerable.Empty<ImageCropperConfiguration.Crop>()
