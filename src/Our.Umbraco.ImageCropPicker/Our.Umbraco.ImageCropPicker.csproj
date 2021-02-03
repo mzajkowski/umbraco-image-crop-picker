@@ -263,6 +263,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.json" />
     <None Include="Web\UI\App_Plugins\ImageCropPicker\package.manifest" />
   </ItemGroup>
   <ItemGroup>
