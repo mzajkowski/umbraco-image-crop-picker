@@ -4,7 +4,7 @@
     <!-- <hr /> -->
     <!-- <pre>{{vm.data.cropsData | json}}</pre> -->
     <!-- /DEBUG -->
-    <select id="cropPickerSelect" name="cropPickerSelect"
+    <select id="cropPickerSelect" name="cropPickerSelect" class="umb-cropsizes__input"
             ng-model="model.value"
             ng-options="crop as (crop.alias + ' [' + crop.width + 'px × ' + crop.height + 'px]') for crop in vm.data.cropsData track by crop.alias">
     </select>
